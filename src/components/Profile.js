@@ -9,6 +9,7 @@ const Profile = () => {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
+    console.log(currentUser);
 
     useEffect(() => {
         if(loading) return;
@@ -18,7 +19,9 @@ const Profile = () => {
         }
     }, [currentUser, navigate, loading]);
     return (
-        <Navbar />
+        <div>
+            <Navbar />
+        </div>
     )
 }
 

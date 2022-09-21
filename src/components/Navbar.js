@@ -26,6 +26,7 @@ const Navbar = () => {
         <nav className="nav">
             <ul className="nav-links">
                 <li><Link className="nav-link" to='/dashboard'>Home</Link></li>
+                <li><Link className="nav-link" to='/addPhoto'>add Post</Link></li>
                 { currentUser
                     ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}>Profile</Link></li>
                     : <li><Link className="nav-link" to="/">Profile</Link></li>

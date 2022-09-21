@@ -4,6 +4,7 @@ nav {
     justify-content: flex-start;
     align-items: center;
     min-height: 10vh;
+    width: 100vw;
     background-color: rgb(81, 81, 170);
     color: black;
   }

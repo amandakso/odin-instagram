@@ -6,6 +6,7 @@ import Reset from './components/Reset';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import AddPhoto from './components/AddPhoto';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />}/>
             <Route path="/users/:username" element={<Profile />} />
+            <Route path="/addPhoto" element={<AddPhoto />}/>
           </Routes>
         </BrowserRouter>
       </div>
