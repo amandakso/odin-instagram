@@ -1,12 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
+import Navbar from './Navbar';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase/firebase.config";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import Navbar from "./Navbar";
+import { auth } from "../firebase/firebase.config";
 
-function Dashboard() {
+const Profile = () => {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
@@ -18,12 +17,9 @@ function Dashboard() {
             return;
         }
     }, [currentUser, navigate, loading]);
-
     return (
-        <div>
-            <Navbar />
-        </div>
+        <Navbar />
     )
 }
 
-export default Dashboard;
+export default Profile;
