@@ -1,0 +1,23 @@
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgb(81, 81, 170);
+    color: black;
+  }
+  
+  .nav-links {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    margin-right: 50px;
+    color: black;
+  }

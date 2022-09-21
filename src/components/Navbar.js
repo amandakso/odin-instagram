@@ -4,13 +4,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../firebase/firebase.config";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
     const { currentUser } = useContext(AuthContext);
 
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
-    console.log(currentUser);
 
     useEffect(() => {
         if(loading) return;
@@ -25,12 +25,12 @@ const Navbar = () => {
     return (
         <nav className="nav">
             <ul className="nav-links">
-                <li><Link to='/dashboard'>Home</Link></li>
+                <li><Link className="nav-link" to='/dashboard'>Home</Link></li>
                 { currentUser
-                    ? <li><Link to={`/users/${currentUser.displayName}`}>Profile</Link></li>
-                    : <li><Link to="/">Profile</Link></li>
+                    ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}>Profile</Link></li>
+                    : <li><Link className="nav-link" to="/">Profile</Link></li>
                 }
-                <li><button onClick={logout}>Log out</button></li>
+                <li><button className="nav-link" onClick={logout}>Log out</button></li>
             </ul>
         </nav>
     );

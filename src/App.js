@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Reset from './components/Reset';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/reset" element={<Reset />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />}/>
+            <Route path="/users/:username" element={<Profile />} />
           </Routes>
         </BrowserRouter>
       </div>
