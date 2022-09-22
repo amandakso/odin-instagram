@@ -2,8 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase/firebase.config";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { auth } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
 
 function Dashboard() {

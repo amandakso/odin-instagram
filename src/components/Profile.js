@@ -12,14 +12,12 @@ const Profile = () => {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
     const username = useParams().username;
-    const [info, setInfo] = useState([])
     const [uid, setUid] = useState("");
     const navigate = useNavigate();
 
     useEffect (() => {
         (async () => {
             const info = await getProfile(username);
-            setInfo(info);
             setUid(info.uid);
         })();
         
