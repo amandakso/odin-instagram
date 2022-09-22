@@ -1,12 +1,11 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './GetCroppedImg';
 import "../styles/ImageCropper.css";
 
-const ImageCropper = () => {
+const ImageCropper = (props) => {
     const inputRef = useRef();
-
     const triggerFileSelectPopup = () => inputRef.current.click();
 
     const [image, setImage] = useState(null);
@@ -14,6 +13,7 @@ const ImageCropper = () => {
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [croppedImage, setCroppedImage] = useState(null);
+ 
 
     const onCropComplete = (croppedArea, croppedAreaPixels) => {
         setCroppedArea(croppedAreaPixels);
@@ -28,19 +28,24 @@ const ImageCropper = () => {
             });
         }
     };
+    useEffect (() => {
+        if (croppedImage) {
+            const updatePhoto = (newPhoto) => props.updatePhoto(newPhoto);
+            updatePhoto(croppedImage);
+        }
+    }, [props, croppedImage])
+
     const storeCroppedImage = useCallback(async () => {
         try {
             const croppedImage = await getCroppedImg(
                 image,
                 croppedArea,
             )
-            console.log('done', { croppedImage })
-            setCroppedImage(croppedImage)
-            console.log(croppedImage);
+            setCroppedImage(croppedImage);
         } catch (e) {
             console.error(e)
         }
-    }, [image, croppedArea])
+    }, [croppedArea, image])
 
 
     return (

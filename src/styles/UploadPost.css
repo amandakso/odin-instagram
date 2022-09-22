@@ -1,0 +1,12 @@
+.container {
+    height: 90vh;
+    width: 100vw;
+}
+
+.caption-container {
+    display: grid;
+    width: 100vw;
+}
+#photo {
+    height: 100vw;
+}
