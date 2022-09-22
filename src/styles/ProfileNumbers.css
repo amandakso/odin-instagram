@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+}
+
+.numbers {
+    min-width: 75px;
+}
