@@ -17,7 +17,7 @@ const ProfileNumbers = (props) => {
         })();
     },[props.uid]); 
     return (
-        <div className="container">
+        <div className="numbers-container">
             <div className="posts numbers">
                 <p>{posts.length}</p>
                 <p>posts</p>
