@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
+import Feed from "./Feed";
 
 function Dashboard() {
     const { currentUser } = useContext(AuthContext);
@@ -21,6 +22,10 @@ function Dashboard() {
     return (
         <div>
             <Navbar />
+            <div className="main">
+                <Feed currentUser={currentUser.uid}/>
+
+            </div>
         </div>
     )
 }
