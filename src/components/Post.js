@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { storage, getUsername } from "../firebase/firebase.config";
 import { ref, getDownloadURL } from "firebase/storage";
+import DefaultAvatar from "./DefaultAvatar";
 
 const Post = (props) => {
     const [image, setImage] = useState("");
@@ -36,6 +37,7 @@ const Post = (props) => {
 
     return (
         <div>
+            <DefaultAvatar />
             <img src={image} alt=""/>
             <p>{postUser}</p>
             <p>{props.info.caption}</p>

@@ -5,6 +5,7 @@ import { AuthContext } from "./AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import { getProfile } from "../firebase/firebase.config";
+import DefaultAvatar from "./DefaultAvatar";
 import ProfileNumbers from './ProfileNumbers';
 
 
@@ -33,6 +34,7 @@ const Profile = () => {
     return (
         <div>
             <Navbar />
+            <DefaultAvatar />
             { uid
                 ? <ProfileNumbers uid={uid} />
                 : null
