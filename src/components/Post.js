@@ -13,6 +13,7 @@ const Post = (props) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [viewHide, setViewHide] = useState("View");
+    const [likeStatus, setLikeStatus] = useState(false);
 
     const displayComments = () => {
         let items = document.querySelectorAll(`.${props.info.post}`);
@@ -84,6 +85,16 @@ const Post = (props) => {
             }
         })();
     }, [props.info.owner])
+
+    const addLike = (event) => {
+        if (likeStatus) {
+            setLikeStatus(false);
+            event.target.style.color = "black";
+        } else {
+            setLikeStatus(true);
+            event.target.style.color = "red";
+        }
+    }
     
 
     return (
@@ -94,7 +105,12 @@ const Post = (props) => {
             </div>
             <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
-                <p><strong>{postUser}</strong><span> {props.info.caption}</span></p>
+                {
+                    likeStatus 
+                    ?<p className="heart" onClick={addLike} >&#9829;</p>
+                    : <p className="heart" onClick={addLike} >&#9825;</p>
+                }
+                <p className="caption"><strong>{postUser}</strong><span> {props.info.caption}</span></p>
                 
                 {comments.map((comment, index) => {
                 return(
