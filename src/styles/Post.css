@@ -1,0 +1,16 @@
+.post {
+    display: grid;
+}
+.postHeader {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+}
+.postHeader-item {
+    margin-left: 20px;
+}
+
+.postImage {
+    width: 100vw;
+    max-width: 500px;
+}

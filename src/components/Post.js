@@ -3,6 +3,7 @@ import { storage, getUsername, storeComment, getComments } from "../firebase/fir
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import DefaultAvatar from "./DefaultAvatar";
+import "../styles/Post.css";
 
 const Post = (props) => {
     const { currentUser } = useContext(AuthContext);
@@ -63,12 +64,12 @@ const Post = (props) => {
     
 
     return (
-        <div>
+        <div className="post">
             <div className="postHeader">
-                <p>{postUser}</p>
-                <DefaultAvatar />
+                <DefaultAvatar className="postHeader-item" />
+                <p className="postHeader-item">{postUser}</p>
             </div>
-            <img src={image} alt=""/>
+            <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
                 <p>{postUser}</p>
                 <p>{props.info.caption}</p>

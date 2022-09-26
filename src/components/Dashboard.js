@@ -24,7 +24,6 @@ function Dashboard() {
             <Navbar />
             <div className="main">
                 <Feed currentUser={currentUser.uid}/>
-
             </div>
         </div>
     )
