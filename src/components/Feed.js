@@ -13,7 +13,6 @@ const Feed = (props) => {
             info = info.sort(
                 (objA, objB) => Number(objB.timestamp) - Number(objA.timestamp),
             );
-            console.log(info);
             setFeed(info);
         })(); 
     },[currentUser])

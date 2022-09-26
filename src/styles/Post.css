@@ -1,5 +1,6 @@
 .post {
     display: grid;
+    justify-content: center;
 }
 .postHeader {
     display: flex;
@@ -9,8 +10,11 @@
 .postHeader-item {
     margin-left: 20px;
 }
-
 .postImage {
     width: 100vw;
     max-width: 500px;
+}
+
+.postFooter {
+    text-align: left;
 }

@@ -10,9 +10,8 @@ export default function Comment(props) {
         })(); 
     }, [props.info.commenter])
     return (
-        <div className="comment">
-            <div><strong>{username}</strong></div>
-            <div>{props.info.comment}</div>
+        <div style ={{display: 'none'}} className={props.info.post}>
+            <p><strong>{username}</strong><span> {props.info.comment}</span></p>     
         </div>
 
     )

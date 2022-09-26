@@ -12,6 +12,26 @@ const Post = (props) => {
     const [postUser, setPostUser] = useState("");
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
+    const [viewHide, setViewHide] = useState("View");
+
+    const displayComments = () => {
+        let items = document.querySelectorAll(`.${props.info.post}`);
+        items.forEach((item) => {
+            switch(item.style.display) {
+                case "none":
+                    item.style.display = "block";
+                    setViewHide("Hide")
+                    break;
+                case "block":
+                    item.style.display = "none";
+                    setViewHide("View")
+                    break;
+                default:
+                    item.style.display = "none";
+                    setViewHide("View")
+            }
+        })
+    }
 
     const addComment = async () => {
         try {
@@ -56,7 +76,6 @@ const Post = (props) => {
     useEffect(() => {
         (async () => {
             try {
-                console.log(props.info.owner);
                 let username = await getUsername(props.info.owner);
                 setPostUser(username);
             } catch (err) {
@@ -75,8 +94,8 @@ const Post = (props) => {
             </div>
             <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
-                <p><strong>{postUser}</strong></p>
-                <p>{props.info.caption}</p>
+                <p><strong>{postUser}</strong><span> {props.info.caption}</span></p>
+                
                 {comments.map((comment, index) => {
                 return(
                     <Comment key={index} info={comment}/>
@@ -84,11 +103,11 @@ const Post = (props) => {
                 })}
                 {
                     comments.length > 1 && 
-                    <p>View all {comments.length} comments</p>
+                    <p onClick={displayComments}>{viewHide} all {comments.length} comments</p>
                 }
                 {
                     comments.length === 1 && 
-                    <p>View 1 comment</p>
+                    <p onClick={displayComments}>{viewHide} 1 comment</p>
                 }       
                 <input
                     type="text"
