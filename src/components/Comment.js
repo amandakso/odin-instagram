@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { getUsername } from "../firebase/firebase.config";
+import { Link } from "react-router-dom";
 
 export default function Comment(props) {
     const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ export default function Comment(props) {
     }, [props.info.commenter])
     return (
         <div style ={{display: 'none'}} className={props.info.post}>
-            <p><strong>{username}</strong><span> {props.info.comment}</span></p>     
+            <p><Link className="text-link" to={`/users/${username}`}><strong>{username}</strong></Link><span> {props.info.comment}</span></p>     
         </div>
 
     )

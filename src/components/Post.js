@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
+import { Link, useNavigate } from "react-router-dom";
 import DefaultAvatar from "./DefaultAvatar";
 import Comment from "./Comment";
 import "../styles/Post.css";
@@ -16,23 +17,27 @@ const Post = (props) => {
     const [likeStatus, setLikeStatus] = useState();
     const [likes, setLikes] = useState([]);
 
+
     const displayComments = () => {
         let items = document.querySelectorAll(`.${props.info.post}`);
+        console.log(items);
         items.forEach((item) => {
-            switch(item.style.display) {
-                case "none":
+            switch(viewHide) {
+                case "View":
                     item.style.display = "block";
-                    setViewHide("Hide")
                     break;
-                case "block":
+                case "Hide":
                     item.style.display = "none";
-                    setViewHide("View")
                     break;
                 default:
                     item.style.display = "none";
-                    setViewHide("View")
             }
         })
+        if (viewHide === "View") {
+            setViewHide("Hide");
+        } else {
+            setViewHide("View");
+        }
     }
 
     const addComment = async () => {
@@ -40,6 +45,7 @@ const Post = (props) => {
             await storeComment(props.info.owner, props.info.post, currentUser.uid, comment)
             setComment("");
             let comments = await getComments(props.info.post, props.info.owner);
+            console.log(comments);
             setComments(comments);
         } catch (err) {
             console.error(err);
@@ -89,16 +95,15 @@ const Post = (props) => {
 
     useEffect(() => {
         (async () => {
-                try {
-                     let comments = await getComments(props.info.post, props.info.owner);
-                     setComments(comments);
-                } catch (err) {
-                    console.error(err);
-                    alert(err.message);
-                }
-            })();
-
-    }, [props.info.post, props.info.owner])
+            try {
+                let allComments = await getComments(props.info.post, props.info.owner);
+                setComments(allComments);
+            } catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
+        })();
+    }, [props.info.post, props.info.owner, comments])
 
     useEffect(() => {
         (async () => {
@@ -144,7 +149,7 @@ const Post = (props) => {
         <div className="post">
             <div className="postHeader">
                 <DefaultAvatar className="postHeader-item" />
-                <p className="postHeader-item"><strong>{postUser}</strong></p>
+                <p className="postHeader-item"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link></p>
             </div>
             <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
@@ -163,7 +168,7 @@ const Post = (props) => {
                         <span>1 like</span>
                     }
                 </div>
-                <p className="caption"><strong>{postUser}</strong><span> {props.info.caption}</span></p>
+                <p className="caption"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link><span> {props.info.caption}</span></p>
                 
                 {comments.map((comment, index) => {
                 return(
