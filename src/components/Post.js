@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { storage, getUsername, storeComment, getComments } from "../firebase/firebase.config";
+import { storage, getUsername, storeComment, getComments, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import DefaultAvatar from "./DefaultAvatar";
@@ -13,7 +13,8 @@ const Post = (props) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [viewHide, setViewHide] = useState("View");
-    const [likeStatus, setLikeStatus] = useState(false);
+    const [likeStatus, setLikeStatus] = useState();
+    console.log(likeStatus);
 
     const displayComments = () => {
         let items = document.querySelectorAll(`.${props.info.post}`);
@@ -45,6 +46,19 @@ const Post = (props) => {
             alert(err.message);
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            try {
+                let status = await getLikeStatus(props.info.owner, props.info.post, currentUser.uid);
+                setLikeStatus(status);
+            } catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
+        })();
+
+},[props.info, currentUser]) 
 
     useEffect(() => {
         (async () => {
@@ -86,16 +100,29 @@ const Post = (props) => {
         })();
     }, [props.info.owner])
 
-    const addLike = (event) => {
+    const addLike = () => {
         if (likeStatus) {
+            (async() => {
+                try {
+                    unlikePost(props.info.owner, props.info.post, currentUser.uid);
+                } catch (err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+            })();
             setLikeStatus(false);
-            event.target.style.color = "black";
         } else {
+            (async() => {
+                try {
+                    likePost(props.info.owner, props.info.post, currentUser.uid);
+                } catch (err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+            })();
             setLikeStatus(true);
-            event.target.style.color = "red";
         }
     }
-    
 
     return (
         <div className="post">
@@ -106,8 +133,8 @@ const Post = (props) => {
             <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
                 {
-                    likeStatus 
-                    ?<p className="heart" onClick={addLike} >&#9829;</p>
+                    likeStatus === true
+                    ? <p className="heart" style= {{color:'red'}} onClick={addLike} >&#9829;</p>
                     : <p className="heart" onClick={addLike} >&#9825;</p>
                 }
                 <p className="caption"><strong>{postUser}</strong><span> {props.info.caption}</span></p>
