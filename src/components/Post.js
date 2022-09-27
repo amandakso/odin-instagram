@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { storage, getUsername, storeComment, getComments, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
+import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import DefaultAvatar from "./DefaultAvatar";
@@ -14,7 +14,7 @@ const Post = (props) => {
     const [comments, setComments] = useState([]);
     const [viewHide, setViewHide] = useState("View");
     const [likeStatus, setLikeStatus] = useState();
-    console.log(likeStatus);
+    const [likes, setLikes] = useState([]);
 
     const displayComments = () => {
         let items = document.querySelectorAll(`.${props.info.post}`);
@@ -58,7 +58,19 @@ const Post = (props) => {
             }
         })();
 
-},[props.info, currentUser]) 
+    },[props.info, currentUser]) 
+
+    useEffect(() => {
+        (async () => {
+            try {
+                let hearts = await getLikes(props.info.owner, props.info.post);
+                setLikes(hearts);
+            } catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
+        })();
+    }, [props.info])
 
     useEffect(() => {
         (async () => {
@@ -104,7 +116,9 @@ const Post = (props) => {
         if (likeStatus) {
             (async() => {
                 try {
-                    unlikePost(props.info.owner, props.info.post, currentUser.uid);
+                    await unlikePost(props.info.owner, props.info.post, currentUser.uid);
+                    let hearts = await getLikes(props.info.owner, props.info.post);
+                    setLikes(hearts);
                 } catch (err) {
                     console.error(err);
                     alert(err.message);
@@ -114,7 +128,9 @@ const Post = (props) => {
         } else {
             (async() => {
                 try {
-                    likePost(props.info.owner, props.info.post, currentUser.uid);
+                    await likePost(props.info.owner, props.info.post, currentUser.uid);
+                    let hearts = await getLikes(props.info.owner, props.info.post);
+                    setLikes(hearts);
                 } catch (err) {
                     console.error(err);
                     alert(err.message);
@@ -132,11 +148,21 @@ const Post = (props) => {
             </div>
             <img className="postImage" src={image} alt=""/>
             <div className="postFooter">
-                {
-                    likeStatus === true
-                    ? <p className="heart" style= {{color:'red'}} onClick={addLike} >&#9829;</p>
-                    : <p className="heart" onClick={addLike} >&#9825;</p>
-                }
+                <div>
+                    {
+                        likeStatus === true
+                        ? <span className="heart" style= {{color:'red'}} onClick={addLike} >&#9829;</span>
+                        : <span className="heart" onClick={addLike} >&#9825;</span>
+                    }
+                    {
+                        likes.length > 1 &&
+                        <span>{likes.length} likes</span>
+                    }
+                    {
+                        likes.length === 1 &&
+                        <span>1 like</span>
+                    }
+                </div>
                 <p className="caption"><strong>{postUser}</strong><span> {props.info.caption}</span></p>
                 
                 {comments.map((comment, index) => {
