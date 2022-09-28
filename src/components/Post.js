@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DefaultAvatar from "./DefaultAvatar";
 import Comment from "./Comment";
 import "../styles/Post.css";

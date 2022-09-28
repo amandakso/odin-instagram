@@ -4,25 +4,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { AuthContext } from "./AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
-import { getProfile } from "../firebase/firebase.config";
+import { getProfile, getPosts } from "../firebase/firebase.config";
 import DefaultAvatar from "./DefaultAvatar";
 import ProfileNumbers from './ProfileNumbers';
+import Grid from "./Grid";
 
 
 const Profile = () => {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
+    const [posts, setPosts] = useState([]);
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const navigate = useNavigate();
-
-    useEffect (() => {
-        (async () => {
-            const info = await getProfile(username);
-            setUid(info.uid);
-        })();
-        
-    }, [username])
 
     useEffect(() => {
         if(loading) return;
@@ -31,6 +25,23 @@ const Profile = () => {
             return;
         }
     }, [currentUser, navigate, loading]);
+
+    useEffect (() => {
+        (async () => {
+            const info = await getProfile(username);
+            setUid(info.uid);
+        })();
+        
+    }, [username]);
+
+    useEffect(() => {
+        (async () => {
+            const content = await getPosts(currentUser.uid);
+            setPosts(content);
+            console.log(content);
+        })();
+    },[currentUser]);
+
     return (
         <div>
             <Navbar />
@@ -39,6 +50,7 @@ const Profile = () => {
                 ? <ProfileNumbers uid={uid} />
                 : null
             }
+            <Grid photos={posts} />
         </div>
     )
 }
