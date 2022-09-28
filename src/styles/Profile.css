@@ -1,0 +1,24 @@
+.profileHeader {
+    display: grid;
+    grid-template: 2fr/ 1fr 8fr ;
+}
+
+.profile-right {
+    display: grid;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.profile-left {
+    padding: 10px;
+    min-width: 120px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+.gridSquare {
+    min-width: 100px;
+    width: 33vw;
+}

@@ -1,8 +1,0 @@
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-}
-.gridSquare {
-    min-width: 100px;
-    width: 33vw;
-}

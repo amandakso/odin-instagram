@@ -1,6 +1,5 @@
 import React from "react";
 import GridSquare from "./GridSquare";
-import "../styles/Grid.css";
 
 const Grid = (props) => {
     const photos = props.photos;
