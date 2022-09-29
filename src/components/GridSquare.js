@@ -35,7 +35,7 @@ const GridSquare = (props) => {
                 }
             })();
 
-    }, [props.photo.img, image])
+    }, [props.photo.img])
     return (
         <div>
             <img className="gridSquare" onClick={clickImage} src={image} alt=""/>

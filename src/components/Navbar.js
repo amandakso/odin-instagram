@@ -4,6 +4,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../firebase/firebase.config";
+import account from "../assets/account.png";
+import cog from "../assets/cog.png";
+import home from "../assets/home.png";
+import plus from "../assets/plus-box.png";
+import logoutAccount from "../assets/logout-variant.png";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
@@ -25,13 +30,13 @@ const Navbar = () => {
     return (
         <nav className="nav">
             <ul className="nav-links">
-                <li><Link className="nav-link" to='/dashboard'>Home</Link></li>
-                <li><Link className="nav-link" to='/addPhoto'>add Post</Link></li>
+                <li><Link className="nav-link" to='/dashboard'><img src={home} alt="home"/></Link></li>
+                <li><Link className="nav-link" to='/addPhoto'><img src={plus} alt="add"/></Link></li>
                 { currentUser
-                    ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}>Profile</Link></li>
-                    : <li><Link className="nav-link" to="/">Profile</Link></li>
+                    ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}><img src={account} alt="account"/></Link></li>
+                    : <li><Link className="nav-link" to="/"><img src={account} alt="account"/></Link></li>
                 }
-                <li><button className="nav-link" onClick={logout}>Log out</button></li>
+                <li><img className="nav-link" onClick={logout} src={logoutAccount} alt="logout"/></li>
             </ul>
         </nav>
     );

@@ -91,7 +91,7 @@ const Post = (props) => {
                 }
             })();
 
-    }, [props.info.img, image])
+    }, [props.info.img])
 
     useEffect(() => {
         (async () => {
@@ -103,7 +103,7 @@ const Post = (props) => {
                 alert(err.message);
             }
         })();
-    }, [props.info.post, props.info.owner, comments])
+    }, [props.info.post, props.info.owner])
 
     useEffect(() => {
         (async () => {
