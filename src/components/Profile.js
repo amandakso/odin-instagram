@@ -41,28 +41,27 @@ const Profile = () => {
         (async () => {
             const content = await getPosts(currentUser.uid);
             setPosts(content);
-            console.log(content);
         })();
     },[currentUser]);
 
     return (
         <div>
             <Navbar />
-            <div className="profileHeader">
-                <div className="profile-left">
-                    <DefaultAvatar />
-                    <div>{name}</div>
+            <div className="overlay">
+                <div className="profileHeader">
+                    <div className="profile-left">
+                        <DefaultAvatar />
+                        <div>{name}</div>
+                    </div>
+                    <div className="profile-right">
+                        { uid
+                            ? <ProfileNumbers uid={uid} />
+                            : null
+                        }
+                    </div>            
                 </div>
-                <div className="profile-right">
-                    { uid
-                        ? <ProfileNumbers uid={uid} />
-                        : null
-                    }
-                </div>
-               
-                
+                <Grid photos={posts} />
             </div>
-            <Grid photos={posts} />
         </div>
     )
 }
