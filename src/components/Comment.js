@@ -11,7 +11,7 @@ export default function Comment(props) {
         })(); 
     }, [props.info.commenter])
     return (
-        <div style ={{display: 'none'}} className={props.info.post}>
+        <div className={props.info.post}>
             <p><Link className="text-link" to={`/users/${username}`}><strong>{username}</strong></Link><span> {props.info.comment}</span></p>     
         </div>
 

@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import { Link } from "react-router-dom";
 import DefaultAvatar from "./DefaultAvatar";
+import Comments from "./Comments";
 import Comment from "./Comment";
 import "../styles/Post.css";
 
@@ -14,10 +15,21 @@ const Post = (props) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [viewHide, setViewHide] = useState("View");
+    const [isClicked, setIsClicked] = useState(false);
     const [likeStatus, setLikeStatus] = useState();
     const [likes, setLikes] = useState([]);
 
+    const displayComments = () => {
+        if (!isClicked) {
+            setViewHide("Hide");
+            setIsClicked(true);
+        } else {
+            setViewHide("View");
+            setIsClicked(false);
+        }
+    }
 
+/*
     const displayComments = () => {
         let items = document.querySelectorAll(`.${props.info.post}`);
         console.log(items);
@@ -39,6 +51,7 @@ const Post = (props) => {
             setViewHide("View");
         }
     }
+    */
 
     const addComment = async () => {
         try {
@@ -169,12 +182,12 @@ const Post = (props) => {
                     }
                 </div>
                 <p className="caption"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link><span> {props.info.caption}</span></p>
-                
-                {comments.map((comment, index) => {
-                return(
-                    <Comment key={index} info={comment}/>
-                )
-                })}
+                <div className="comments">
+                    { isClicked
+                        ? <Comments comments={comments}/>
+                        :null
+                    }             
+                </div>
                 {
                     comments.length > 1 && 
                     <p onClick={displayComments}>{viewHide} all {comments.length} comments</p>
