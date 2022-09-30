@@ -7,6 +7,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import AddPhoto from './components/AddPhoto';
+import Settings from './components/Settings';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}/>
             <Route path="/users/:username" element={<Profile />} />
             <Route path="/addPhoto" element={<AddPhoto />}/>
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </BrowserRouter>
       </div>

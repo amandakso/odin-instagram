@@ -36,6 +36,7 @@ const Navbar = () => {
                     ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}><img src={account} alt="account"/></Link></li>
                     : <li><Link className="nav-link" to="/"><img src={account} alt="account"/></Link></li>
                 }
+                <li><Link className="nav-link" to="/settings"><img src={cog} alt="settings"/></Link></li>
                 <li><img className="nav-link" onClick={logout} src={logoutAccount} alt="logout"/></li>
             </ul>
         </nav>
