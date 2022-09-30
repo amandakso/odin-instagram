@@ -21,14 +21,6 @@ const Profile = () => {
     const [page, setPage] = useState(<div></div>) 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if(loading) return;
-        if(!currentUser) {
-            navigate("/");
-            return;
-        }
-    }, [currentUser, navigate, loading]);
-
     useEffect (() => {
         try {
             (async () => {
@@ -73,7 +65,7 @@ const Profile = () => {
                                 }
                                 { uid === currentUser.uid
                                     ? null
-                                    : <button>Follow</button>
+                                    : <button className="follow">Follow</button>
                                 }
                             </div>            
                         </div>
