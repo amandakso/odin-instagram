@@ -18,6 +18,8 @@ function Reset() {
     return (
         <div className="reset">
             <div className="reset_container">
+                <h3>Trouble Logging In?</h3>
+                <p>Enter your email and we'll send a link to get back into your account. </p>
                 <input
                     type="text"
                     className="reset_textBox"

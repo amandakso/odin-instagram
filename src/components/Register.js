@@ -34,6 +34,7 @@ function Register() {
     return (
         <div className="register">
             <div className="register_container">
+                <p className="handlee">Pandastagram</p>
                 <input
                     type="text"
                     className="register_textBox"

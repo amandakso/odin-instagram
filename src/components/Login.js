@@ -25,6 +25,7 @@ function Login() {
     return (
         <div className="login">
             <div className="login_container">
+                <p className="handlee">Pandastagram</p>
                 <input 
                     type="text"
                     className="login_textBox"
