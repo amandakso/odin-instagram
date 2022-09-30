@@ -18,7 +18,8 @@ const Profile = () => {
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
-    const [page, setPage] = useState(<div></div>) 
+    const [followStatus, setFollowStatus] = useState("");
+    const [page, setPage] = useState(<div></div>) ;
     const navigate = useNavigate();
 
     useEffect (() => {
@@ -33,6 +34,7 @@ const Profile = () => {
         }
         
     }, [username]);
+
 
     useEffect(() => {
         try {
@@ -60,12 +62,8 @@ const Profile = () => {
                             </div>
                             <div className="profile-right">
                                 { uid
-                                    ? <ProfileNumbers uid={uid} />
+                                    ? <ProfileNumbers user={user} uid={uid} />
                                     : null
-                                }
-                                { uid === currentUser.uid
-                                    ? null
-                                    : <button className="follow">Follow</button>
                                 }
                             </div>            
                         </div>
@@ -79,7 +77,7 @@ const Profile = () => {
             navigate("/");
             return;
         }
-    }, [ currentUser, name, posts, uid, navigate, loading, user, error]);
+    }, [name, posts, uid, navigate, loading, user, error]);
 
     return (
         <div>
