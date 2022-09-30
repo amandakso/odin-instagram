@@ -18,6 +18,7 @@ const Profile = () => {
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
+    const [page, setPage] = useState(<div></div>) 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,39 +30,68 @@ const Profile = () => {
     }, [currentUser, navigate, loading]);
 
     useEffect (() => {
-        (async () => {
-            const info = await getProfile(username);
-            setUid(info.uid);
-            setName(info.name)
-        })();
+        try {
+            (async () => {
+                const info = await getProfile(username);
+                setUid(info.uid);
+                setName(info.name)
+            })();
+        } catch (err) {
+            console.error(err);
+        }
         
     }, [username]);
 
     useEffect(() => {
-        (async () => {
-            const content = await getPosts(currentUser.uid);
-            setPosts(content);
-        })();
-    },[currentUser]);
+        try {
+            (async () => {
+                const content = await getPosts(uid);
+                setPosts(content);
+            })();
+        } catch (err) {
+            console.error(err);
+        }
+    },[uid]);
+
+    useEffect(() => {
+        if(loading) {
+            setPage(<div>Loading...</div>);
+        } else if (user) {
+            setPage(
+                <div>
+                    <Navbar />
+                    <div className="overlay">
+                        <div className="profileHeader">
+                            <div className="profile-left">
+                                <DefaultAvatar />
+                                <div>{name}</div>
+                            </div>
+                            <div className="profile-right">
+                                { uid
+                                    ? <ProfileNumbers uid={uid} />
+                                    : null
+                                }
+                                { uid === currentUser.uid
+                                    ? null
+                                    : <button>Follow</button>
+                                }
+                            </div>            
+                        </div>
+                        <Grid photos={posts} />
+                    </div>
+                </div>
+            )
+        } else if (error) {
+            setPage(<div>Error...</div>)
+        } else {
+            navigate("/");
+            return;
+        }
+    }, [ currentUser, name, posts, uid, navigate, loading, user, error]);
 
     return (
         <div>
-            <Navbar />
-            <div className="overlay">
-                <div className="profileHeader">
-                    <div className="profile-left">
-                        <DefaultAvatar />
-                        <div>{name}</div>
-                    </div>
-                    <div className="profile-right">
-                        { uid
-                            ? <ProfileNumbers uid={uid} />
-                            : null
-                        }
-                    </div>            
-                </div>
-                <Grid photos={posts} />
-            </div>
+            {page}
         </div>
     )
 }

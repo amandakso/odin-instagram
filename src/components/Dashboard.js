@@ -9,22 +9,32 @@ import Feed from "./Feed";
 function Dashboard() {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
+    const [page, setPage] = useState(<div></div>) 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(loading) return;
-        if(!currentUser) {
+        if(loading) {
+            setPage(<div>Loading...</div>);
+        } else if (user) {
+            setPage(
+                <div>
+                    <Navbar />
+                    <div className="main">
+                        <Feed currentUser={user.uid}/>
+                    </div>
+                </div>
+            )
+        } else if (error) {
+            setPage(<div>Error...</div>)
+        } else {
             navigate("/");
             return;
         }
-    }, [currentUser, navigate, loading]);
+    }, [ navigate, loading, user, error]);
 
     return (
         <div>
-            <Navbar />
-            <div className="main">
-                <Feed currentUser={currentUser.uid}/>
-            </div>
+            {page}
         </div>
     )
 }
