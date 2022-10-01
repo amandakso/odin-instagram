@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../firebase/firebase.config";
+import logo from "../assets/panda-insta.png";
 import account from "../assets/account.png";
 import cog from "../assets/cog.png";
 import home from "../assets/home.png";
@@ -29,6 +30,9 @@ const Navbar = () => {
 
     return (
         <nav className="nav">
+            <ul className="nav-links left">
+                <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span>Pandastagram</span></Link></li>      
+            </ul>
             <ul className="nav-links">
                 <li><Link className="nav-link" to='/dashboard'><img src={home} alt="home"/></Link></li>
                 <li><Link className="nav-link" to='/addPhoto'><img src={plus} alt="add"/></Link></li>
