@@ -46,6 +46,12 @@ const ProfileNumbers = (props) => {
         }
     }, [followers, props.user])
 
+    useEffect(() => {
+        if(props.uid === props.user.uid) {
+            setUpdateNumbers(true);
+        }
+    },[props.uid, props.user])
+
     useEffect (() => {
         if (updateNumbers) {
             (async () => {

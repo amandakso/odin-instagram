@@ -18,7 +18,6 @@ const Profile = () => {
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
-    const [followStatus, setFollowStatus] = useState("");
     const [page, setPage] = useState(<div></div>) ;
     const navigate = useNavigate();
 
@@ -33,7 +32,7 @@ const Profile = () => {
             console.error(err);
         }
         
-    }, [username]);
+    }, [username, user]);
 
 
     useEffect(() => {
