@@ -27,6 +27,7 @@ const Settings = () => {
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Enter New Name"
                         />
+                        <button onClick={()=> {console.log(name); console.log(user)}}>Change Name</button>
                         <h3>Change Username</h3>
                         <input
                             type="text"
@@ -35,6 +36,7 @@ const Settings = () => {
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Enter New Username"
                         />
+                        <button onClick={()=> console.log(username)}>Change Username</button>
                         <h3>Change Profile Photo</h3>
                     </div>
                 </div>

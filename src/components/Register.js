@@ -21,10 +21,14 @@ function Register() {
         return false;
     }
 
-    const register = () => {
-        if (!isPasswordConfirmed(password, confirmPassword)) alert ("Passwords don't match");
-        if(!name) alert ("Please enter name");
-        registerWithEmailAndPassword(username, name, email, password);
+    const register = () => {   
+        if (!name) {
+            alert ("Please enter name");
+        } else if (!isPasswordConfirmed(password, confirmPassword)) {
+            alert ("Passwords don't match");
+        }  else {
+            registerWithEmailAndPassword(username, name, email, password);
+        }
     };
     useEffect(() => {
         if (loading) return;
