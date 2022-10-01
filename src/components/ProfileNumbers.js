@@ -8,7 +8,6 @@ const ProfileNumbers = (props) => {
     const [following, setFollowing] = useState([]);
     const [followStatus, setFollowStatus] = useState("");
     const [updateNumbers, setUpdateNumbers] = useState(true);
-    console.log(following);
 
     const follow = async (account, user) => {
         try {
@@ -33,8 +32,6 @@ const ProfileNumbers = (props) => {
     useEffect(() => {
         let status = false;
         for (let i = 0; i < followers.length; i++) {
-            console.log(followers[i]);
-            console.log(props.user.uid);
             if (followers[i].follower === props.user.uid) {
                 status = true;
             };
