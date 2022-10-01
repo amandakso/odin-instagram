@@ -18,7 +18,8 @@ const Profile = () => {
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
-    const [page, setPage] = useState(<div></div>) ;
+    const [page, setPage] = useState(<div></div>);
+    const [updatePage, setUpdatePage] = useState(false);
     const navigate = useNavigate();
 
     useEffect (() => {

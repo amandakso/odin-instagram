@@ -8,6 +8,7 @@ import logo from "../assets/panda-insta.png";
 import account from "../assets/account.png";
 import cog from "../assets/cog.png";
 import home from "../assets/home.png";
+import search from "../assets/magnify.png";
 import plus from "../assets/plus-box.png";
 import logoutAccount from "../assets/logout-variant.png";
 import "../styles/Navbar.css";
@@ -34,6 +35,7 @@ const Navbar = () => {
                 <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span>Pandastagram</span></Link></li>      
             </ul>
             <ul className="nav-links">
+                <li><img className="nav-link" src={search} alt="search"/></li>
                 <li><Link className="nav-link" to='/dashboard'><img src={home} alt="home"/></Link></li>
                 <li><Link className="nav-link" to='/addPhoto'><img src={plus} alt="add"/></Link></li>
                 { currentUser
