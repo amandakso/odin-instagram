@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, updateName } from "../firebase/firebase.config";
+import { auth, updateName, updateUsername } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
 
 const Settings = () => {
@@ -36,7 +36,7 @@ const Settings = () => {
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Enter New Username"
                         />
-                        <button onClick={()=> console.log(username)}>Change Username</button>
+                        <button onClick={()=> updateUsername(user.uid, username)}>Change Username</button>
                         <h3>Change Profile Photo</h3>
                     </div>
                 </div>
