@@ -5,18 +5,22 @@
     position: relative;
 }
 
+.profile-container {
+    width: 100vw;
+    position: relative
+}
 
 
 .container-cropper {
     display: grid;
     position: relative;
-    height: 80%; 
+    height: 80%;
     padding: 10px;
 }
 
-
 .cropper {
     height: 80%;
+    min-height: 500px;
 }
 
 
@@ -35,4 +39,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.profile-btn {
+    margin-top: 10px;
 }

@@ -3,13 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, updateName, updateUsername } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
+import ProfilePhoto from "./ProfilePhoto";
+import "../styles/Settings.css";
 
 const Settings = () => {
     const [user, loading, error] = useAuthState(auth);
     const [page, setPage] = useState(<div></div>);
     const [username, setUsername] = useState("");
     const [name, setName] = useState("");
+    const [photo, setPhoto] = useState("");
+    
     const navigate = useNavigate();
+
+    const updatePhoto = (newPhoto) => {
+        setPhoto(newPhoto);
+    }
 
     useEffect(() => {
         if(loading) {
@@ -38,6 +46,9 @@ const Settings = () => {
                         />
                         <button onClick={()=> updateUsername(user.uid, username)}>Change Username</button>
                         <h3>Change Profile Photo</h3>
+                        <div className="profile-photo">
+                                <ProfilePhoto user={user}/>
+                        </div>
                     </div>
                 </div>
             )
