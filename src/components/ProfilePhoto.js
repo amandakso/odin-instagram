@@ -6,7 +6,6 @@ import ProfileImageCropper from "./ProfileImageCropper";
 
 const ProfilePhoto = (props) => {
     const [photo, setPhoto] = useState(null);
-    const [image, setImage] = useState(null);
     const updatePhoto = (newPhoto) => {
         setPhoto(newPhoto);
     }
