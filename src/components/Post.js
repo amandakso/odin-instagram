@@ -29,30 +29,6 @@ const Post = (props) => {
         }
     }
 
-/*
-    const displayComments = () => {
-        let items = document.querySelectorAll(`.${props.info.post}`);
-        console.log(items);
-        items.forEach((item) => {
-            switch(viewHide) {
-                case "View":
-                    item.style.display = "block";
-                    break;
-                case "Hide":
-                    item.style.display = "none";
-                    break;
-                default:
-                    item.style.display = "none";
-            }
-        })
-        if (viewHide === "View") {
-            setViewHide("Hide");
-        } else {
-            setViewHide("View");
-        }
-    }
-    */
-
     const addComment = async () => {
         try {
             await storeComment(props.info.owner, props.info.post, currentUser.uid, comment)

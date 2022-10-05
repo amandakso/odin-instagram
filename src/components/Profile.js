@@ -5,6 +5,7 @@ import { AuthContext } from "./AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import { getProfile, getPosts } from "../firebase/firebase.config";
+import Avatar from "./Avatar";
 import DefaultAvatar from "./DefaultAvatar";
 import ProfileNumbers from './ProfileNumbers';
 import Grid from "./Grid";
@@ -57,7 +58,7 @@ const Profile = () => {
                     <div className="overlay">
                         <div className="profileHeader">
                             <div className="profile-left">
-                                <DefaultAvatar />
+                                <Avatar user={user} />
                                 <div>{name}</div>
                             </div>
                             <div className="profile-right">
