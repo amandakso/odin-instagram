@@ -11,13 +11,8 @@ const Settings = () => {
     const [page, setPage] = useState(<div></div>);
     const [username, setUsername] = useState("");
     const [name, setName] = useState("");
-    const [photo, setPhoto] = useState("");
     
     const navigate = useNavigate();
-
-    const updatePhoto = (newPhoto) => {
-        setPhoto(newPhoto);
-    }
 
     useEffect(() => {
         if(loading) {
