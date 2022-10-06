@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Follower from "./Follower";
+import Following from "./Following";
 
 const Users = (props) => {
+    const [page, setPage] = useState(<div></div>)
     const accounts = props.accounts;
+    useEffect(() => {
+        if (props.userType === "follower") {
+            setPage(
+                <div>
+                    { accounts.map((account, index) => {
+                        return(
+                            <Follower key={index} update={props.update} account={account}/>
+                        )
+                    })};
+                </div>
+            )
+        } else if (props.userType ==="following") {
+            setPage(
+                <div>
+                    { accounts.map((account, index) => {
+                        return(
+                            <Following key={index} update={props.update} account={account}/>
+                        )
+                    })};
+                </div>
+            )
+        } else {
+            setPage(<div>Error...</div>)
+        }
+    },[props, accounts])
     return (
-        <div>
-        { accounts.map((account, index) => {
-                return(
-                    <Follower key={index} update={props.update} account={account}/>
-                )
-        })};
-        </div>
+        <div>{page}</div>
     )
 }
 

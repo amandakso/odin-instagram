@@ -10,7 +10,8 @@ const ProfileNumbers = (props) => {
     const [followStatus, setFollowStatus] = useState("");
     const [updateNumbers, setUpdateNumbers] = useState(true);
     const [ followersClicked, setFollowersClicked] = useState(false);
-
+    const [ followingClicked, setFollowingClicked] = useState(false);
+    
     const follow = async (account, user) => {
         try {
             await followAccount(account, user);
@@ -34,7 +35,12 @@ const ProfileNumbers = (props) => {
     const switchToFollower = () => {
         setUpdateNumbers(true);
         changeFollowerClick();
-    }
+    };
+
+    const switchToFollowing = () => {
+        setUpdateNumbers(true);
+        changeFollowingClick();
+    };
 
     const changeFollowerClick = () => {
         if (followersClicked) {
@@ -44,6 +50,19 @@ const ProfileNumbers = (props) => {
             
         } else {
             setFollowersClicked(true);
+            let overlay = document.querySelector(".overlay");
+            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        }
+    };
+
+    const changeFollowingClick = () => {
+        if (followingClicked) {
+            setFollowingClicked(false);
+            let overlay = document.querySelector(".overlay");
+            overlay.style.backgroundColor = "rgba(250, 250, 250, 0)";
+            
+        } else {
+            setFollowingClicked(true);
             let overlay = document.querySelector(".overlay");
             overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         }
@@ -92,14 +111,17 @@ const ProfileNumbers = (props) => {
                     <p onClick={() => changeFollowerClick()}>{followers.length}</p>
                     <p>followers</p>
                     { followersClicked
-                    ? <div className="popup"><UsersModal update={switchToFollower} onClick={changeFollowerClick} accounts={followers}/></div>
+                    ? <div className="popup"><UsersModal update={switchToFollower} onClick={changeFollowerClick} userType={"follower"} accounts={followers}/></div>
                     : null
-                    }
-                    
+                    } 
                 </div>
                 <div className="following numbers">
-                    <p onClick={() => console.log(following)}>{following.length}</p>
+                    <p onClick={() => changeFollowingClick()}>{following.length}</p>
                     <p>following</p>
+                    { followingClicked
+                    ? <div className="popup"><UsersModal update={switchToFollowing} onClick={changeFollowingClick} userType={"following"} accounts={following}/></div>
+                    : null
+                    } 
                 </div>
             </div>
             { props.uid !== props.user.uid &&             

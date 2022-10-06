@@ -7,7 +7,7 @@ const UsersModal = (props) => {
     return (
         <div className="modal">
             <img className="close" onClick={props.onClick} src={close} alt="close"/>
-            <Users accounts={props.accounts} update={props.update}/>
+            <Users accounts={props.accounts} update={props.update} userType={props.userType}/>
         </div>
 
     )
