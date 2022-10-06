@@ -3,7 +3,7 @@ import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatu
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import { Link } from "react-router-dom";
-import DefaultAvatar from "./DefaultAvatar";
+import Avatar from "./Avatar";
 import Comments from "./Comments";
 import Comment from "./Comment";
 import "../styles/Post.css";
@@ -137,7 +137,7 @@ const Post = (props) => {
     return (
         <div className="post">
             <div className="postHeader">
-                <DefaultAvatar className="postHeader-item" />
+                <Avatar user={props.info.owner} className="postHeader-item"/>
                 <p className="postHeader-item"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link></p>
             </div>
             <img className="postImage" src={image} alt=""/>
