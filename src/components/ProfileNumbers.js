@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProfileInfo, followAccount, unfollowAccount } from '../firebase/firebase.config';
 import "../styles/ProfileNumbers.css";
+import UsersModal from './UsersModal';
 
 const ProfileNumbers = (props) => {
     const [posts, setPosts] = useState([]);
@@ -8,6 +9,7 @@ const ProfileNumbers = (props) => {
     const [following, setFollowing] = useState([]);
     const [followStatus, setFollowStatus] = useState("");
     const [updateNumbers, setUpdateNumbers] = useState(true);
+    const [ followersClicked, setFollowersClicked] = useState(false);
 
     const follow = async (account, user) => {
         try {
@@ -26,6 +28,24 @@ const ProfileNumbers = (props) => {
             setUpdateNumbers(true);
         } catch (err) {
             console.error(err);
+        }
+    };
+
+    const switchToFollower = () => {
+        setUpdateNumbers(true);
+        changeFollowerClick();
+    }
+
+    const changeFollowerClick = () => {
+        if (followersClicked) {
+            setFollowersClicked(false);
+            let overlay = document.querySelector(".overlay");
+            overlay.style.backgroundColor = "rgba(250, 250, 250, 0)";
+            
+        } else {
+            setFollowersClicked(true);
+            let overlay = document.querySelector(".overlay");
+            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         }
     };
 
@@ -69,11 +89,16 @@ const ProfileNumbers = (props) => {
                     <p>posts</p>
                 </div>
                 <div className="followers numbers">
-                    <p>{followers.length}</p>
+                    <p onClick={() => changeFollowerClick()}>{followers.length}</p>
                     <p>followers</p>
+                    { followersClicked
+                    ? <div className="popup"><UsersModal update={switchToFollower} onClick={changeFollowerClick}followers={followers}/></div>
+                    : null
+                    }
+                    
                 </div>
                 <div className="following numbers">
-                    <p>{following.length}</p>
+                    <p onClick={() => console.log(following)}>{following.length}</p>
                     <p>following</p>
                 </div>
             </div>

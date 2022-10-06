@@ -6,13 +6,11 @@ import DefaultAvatar from "./DefaultAvatar";
 const Avatar = (props) => {
     const [avatar, setAvatar] = useState(null);
     const [photo, setPhoto] = useState(null);
-    console.log(props.user);
 
     useEffect(() => {
         (async () => {
             try {
                 let fileName = await getAvatar(props.user);
-                console.log(fileName);
                 setPhoto(fileName);
             } catch (err) {
                 console.error(err);

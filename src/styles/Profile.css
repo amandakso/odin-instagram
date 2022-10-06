@@ -50,6 +50,10 @@
     display: grid;
 
 }
+
+.overlay {
+    height: 100vh;
+}
 @media only screen and (max-width: 600px) {
     .popup {
         position: absolute;

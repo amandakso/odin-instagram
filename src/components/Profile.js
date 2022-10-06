@@ -50,6 +50,27 @@ const Profile = () => {
     useEffect(() => {
         if(loading) {
             setPage(<div>Loading...</div>);
+        } else if (user.displayName !== username && uid) {
+            setPage(
+                <div>
+                <Navbar />
+                <div className="overlay">
+                    <div className="profileHeader">
+                        <div className="profile-left">
+                            <Avatar user={uid} />
+                            <div>{name}</div>
+                        </div>
+                        <div className="profile-right">
+                            { uid
+                                ? <ProfileNumbers user={user} uid={uid} />
+                                : null
+                            }
+                        </div>            
+                    </div>
+                    <Grid photos={posts} />
+                </div>
+            </div>
+            )
         } else if (user) {
             setPage(
                 <div>
@@ -70,14 +91,14 @@ const Profile = () => {
                         <Grid photos={posts} />
                     </div>
                 </div>
-            )
+            )       
         } else if (error) {
             setPage(<div>Error...</div>)
         } else {
             navigate("/");
             return;
         }
-    }, [name, posts, uid, navigate, loading, user, error]);
+    }, [name, posts, uid, username, navigate, loading, user, error]);
 
     return (
         <div>

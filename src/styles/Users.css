@@ -1,0 +1,32 @@
+.modal {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin-left:-25%;   /* negative half of width above */
+    margin-top:-25%; 
+    background-color: rgb(255,255,255);
+    min-width: 500px;
+    z-index: 1;
+}
+
+.user {
+    display: grid; 
+    grid-template: 1fr / 85px auto;
+    text-decoration: none;
+    color: rgb(0,0,0);
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+.user-left {
+    display: grid;
+    justify-items: center;
+}
+.user-right {
+    display: grid;
+    justify-items: start;
+}
+
+.user-right > p {
+    margin: 0 0 0 10px;
+}
