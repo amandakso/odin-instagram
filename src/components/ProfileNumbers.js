@@ -92,7 +92,7 @@ const ProfileNumbers = (props) => {
                     <p onClick={() => changeFollowerClick()}>{followers.length}</p>
                     <p>followers</p>
                     { followersClicked
-                    ? <div className="popup"><UsersModal update={switchToFollower} onClick={changeFollowerClick}followers={followers}/></div>
+                    ? <div className="popup"><UsersModal update={switchToFollower} onClick={changeFollowerClick} accounts={followers}/></div>
                     : null
                     }
                     

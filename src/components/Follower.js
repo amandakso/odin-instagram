@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { getProfileData } from "../firebase/firebase.config";
 import Avatar from "./Avatar";
 
-const User = (props) => {
+const Follower = (props) => {
     const [username, setUsername] = useState(null);
     const[fullName, setFullName] = useState(null);
 
     useEffect(() => {
         (async () => {
             try {
-                let profileData = await getProfileData(props.follower.follower);
+                let profileData = await getProfileData(props.account.follower);
                 setUsername(profileData.displayName);
                 setFullName(profileData.name);
             } catch (err) {
@@ -18,13 +18,13 @@ const User = (props) => {
                 alert(err.message);
             }
         })();
-    },[props.follower]);
+    },[props.account]);
 
     return (
         <div>
             <Link className="user"onClick={() => props.update()}to={`/users/${username}`}>
                 <div className="user-left">
-                    <Avatar user={props.follower.follower}/>
+                    <Avatar user={props.account.follower}/>
                 </div>
                 <div className="user-right">
                     <p><strong>{username}</strong></p>
@@ -35,4 +35,4 @@ const User = (props) => {
     )
 }
 
-export default User;
+export default Follower;

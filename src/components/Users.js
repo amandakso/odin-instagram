@@ -1,13 +1,13 @@
 import React from "react";
-import User from "./User";
+import Follower from "./Follower";
 
 const Users = (props) => {
-    const followers = props.followers;
+    const accounts = props.accounts;
     return (
         <div>
-        { followers.map((follower, index) => {
+        { accounts.map((account, index) => {
                 return(
-                    <User key={index} update={props.update} follower={follower}/>
+                    <Follower key={index} update={props.update} account={account}/>
                 )
         })};
         </div>
