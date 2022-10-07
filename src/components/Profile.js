@@ -1,7 +1,6 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from './Navbar';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AuthContext } from "./AuthProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import { getProfile, getPosts } from "../firebase/firebase.config";
@@ -11,15 +10,13 @@ import Grid from "./Grid";
 import "../styles/Profile.css";
 
 
-const Profile = (props) => {
-    const { currentUser } = useContext(AuthContext);
+const Profile = () => {
     const [user, loading, error] = useAuthState(auth);
     const [posts, setPosts] = useState([]);
     const username = useParams().username;
     const [uid, setUid] = useState("");
     const [name, setName] = useState("");
     const [page, setPage] = useState(<div></div>);
-    const [updatePage, setUpdatePage] = useState(false);
     const navigate = useNavigate();
 
     useEffect (() => {
