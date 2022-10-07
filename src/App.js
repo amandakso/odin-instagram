@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import AddPhoto from './components/AddPhoto';
 import Settings from './components/Settings';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -22,10 +23,10 @@ function App() {
             <Route path="/users/:username" element={<Profile />} />
             <Route path="/addPhoto" element={<AddPhoto />}/>
             <Route path="/settings" element={<Settings />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </BrowserRouter>
       </div>
-
     </AuthProvider>
   );
 }
