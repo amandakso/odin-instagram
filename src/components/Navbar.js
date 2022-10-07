@@ -11,13 +11,22 @@ import home from "../assets/home.png";
 import search from "../assets/magnify.png";
 import plus from "../assets/plus-box.png";
 import logoutAccount from "../assets/logout-variant.png";
+import SearchModal from "./SearchModal";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
     const { currentUser } = useContext(AuthContext);
-
     const [user, loading, error] = useAuthState(auth);
+    const [searchClicked, setSearchClicked] = useState(false);
     const navigate = useNavigate();
+
+    const changeSearchClicked = () => {
+        if (searchClicked) {
+            setSearchClicked(false);            
+        } else {
+            setSearchClicked(true);
+        }
+    };
 
     useEffect(() => {
         if(loading) return;
@@ -35,7 +44,7 @@ const Navbar = () => {
                 <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span>Pandastagram</span></Link></li>      
             </ul>
             <ul className="nav-links">
-                <li><img className="nav-link" src={search} alt="search"/></li>
+                <li><img onClick={changeSearchClicked} className="nav-link" src={search} alt="search"/></li>
                 <li><Link className="nav-link" to='/dashboard'><img src={home} alt="home"/></Link></li>
                 <li><Link className="nav-link" to='/addPhoto'><img src={plus} alt="add"/></Link></li>
                 { currentUser
@@ -45,6 +54,10 @@ const Navbar = () => {
                 <li><Link className="nav-link" to="/settings"><img src={cog} alt="settings"/></Link></li>
                 <li><img className="nav-link" onClick={logout} src={logoutAccount} alt="logout"/></li>
             </ul>
+            { searchClicked
+                ? <div><SearchModal onClick={changeSearchClicked}/></div>
+                : null
+            }
         </nav>
     );
 };

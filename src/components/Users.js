@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Follower from "./Follower";
 import Following from "./Following";
+import SearchResult from "./SearchResult";
 
 const Users = (props) => {
     const [page, setPage] = useState(<div></div>)
@@ -13,7 +14,7 @@ const Users = (props) => {
                         return(
                             <Follower key={index} update={props.update} account={account}/>
                         )
-                    })};
+                    })}
                 </div>
             )
         } else if (props.userType ==="following") {
@@ -23,7 +24,17 @@ const Users = (props) => {
                         return(
                             <Following key={index} update={props.update} account={account}/>
                         )
-                    })};
+                    })}
+                </div>
+            )
+        } else if (props.userType ==="search") {
+            setPage(
+                <div>
+                    { accounts.map((account, index) => {
+                        return(
+                            <SearchResult key={index} update={props.update} account={account}/>
+                        )
+                    })}
                 </div>
             )
         } else {
