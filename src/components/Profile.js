@@ -73,7 +73,7 @@ const Profile = () => {
         } else if (error) {
             setPage(<div>Error...</div>)
         } else {
-            navigate("/");
+            navigate("/logout");
             return;
         }
     }, [name, posts, uid, username, navigate, loading, user, error]);
