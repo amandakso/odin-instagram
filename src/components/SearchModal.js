@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from "react";
+import React, { useState }from "react";
 import close from "../assets/close-circle.png";
 import Users from "./Users";
 import "../styles/Users.css";
@@ -35,7 +35,6 @@ const SearchModal = (props) => {
         }
         filtered = alphabetizeUsernames(filtered);
         setSearchResults(<Users accounts={filtered} update={props.onClick} userType={"search"}/>)
-        
     }
 
     return (

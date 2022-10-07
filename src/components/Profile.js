@@ -11,7 +11,7 @@ import Grid from "./Grid";
 import "../styles/Profile.css";
 
 
-const Profile = () => {
+const Profile = (props) => {
     const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
     const [posts, setPosts] = useState([]);
@@ -61,7 +61,7 @@ const Profile = () => {
                             </div>
                             <div className="profile-right">
                                 { uid
-                                    ? <ProfileNumbers user={user} uid={uid} />
+                                    ? <ProfileNumbers user={user} uid={uid}/>
                                     : null
                                 }
                             </div>            

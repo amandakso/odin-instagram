@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProfileData } from "../firebase/firebase.config";
 import Avatar from "./Avatar";
 
 const SearchResult = (props) => {
@@ -11,12 +10,18 @@ const SearchResult = (props) => {
         let profileData = props.account;
         setUsername(profileData.displayName);
         setFullName(profileData.name);
-        console.log("check");
     },[props.account]);
+
+    const refresh = () => {
+        props.update();
+        setTimeout(()=>{
+            window.location.reload(false);
+        }, 500);
+    }
 
     return (
         <div>
-            <Link className="user"onClick={() => props.update()}to={`/users/${username}`}>
+            <Link className="user"onClick={() => refresh()}to={`/users/${username}`}>
                 <div className="user-left">
                     <Avatar user={props.account.uid}/>
                 </div>
