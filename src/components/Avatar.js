@@ -8,15 +8,19 @@ const Avatar = (props) => {
     const [photo, setPhoto] = useState(null);
 
     useEffect(() => {
-        (async () => {
-            try {
-                let fileName = await getAvatar(props.user);
-                setPhoto(fileName);
-            } catch (err) {
-                console.error(err);
-                alert(err.message);
-            }
-        })();  
+        if (!props.user) {
+            return
+        } else {
+            (async () => {
+                try {
+                    let fileName = await getAvatar(props.user);
+                    setPhoto(fileName);
+                } catch (err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+            })();  
+        }
     },[props.user])
 
     useEffect(() => {
