@@ -43,15 +43,19 @@ const Post = (props) => {
     }
 
     useEffect(() => {
-        (async () => {
-            try {
-                let status = await getLikeStatus(props.info.owner, props.info.post, currentUser.uid);
-                setLikeStatus(status);
-            } catch (err) {
-                console.error(err);
-                alert(err.message);
-            }
-        })();
+        if (!currentUser) {
+            return
+        } else {
+            (async () => {
+                try {
+                    let status = await getLikeStatus(props.info.owner, props.info.post, currentUser.uid);
+                    setLikeStatus(status);
+                } catch (err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+            })();
+        }
 
     },[props.info, currentUser]) 
 

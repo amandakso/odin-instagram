@@ -20,17 +20,17 @@ function Dashboard() {
                 <div>
                     <Navbar />
                     <div className="main">
-                        <Feed currentUser={user.uid}/>
+                        <Feed />
                     </div>
                 </div>
             )
         } else if (error) {
             setPage(<div>Error...</div>)
         } else {
-            navigate("/");
+            navigate("/logout");
             return;
         }
-    }, [ navigate, loading, user, error]);
+    }, [navigate, loading, user, error]);
 
     return (
         <div>
