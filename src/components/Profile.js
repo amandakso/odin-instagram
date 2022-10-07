@@ -54,13 +54,9 @@ const Profile = () => {
             setPage(
                 <div>
                     <Navbar />
-                    <div className="overlay">
                         <div className="profileHeader">
                             <div className="profile-left">
-                                { user.uid !== uid
-                                    ? <Avatar user={uid} />
-                                    : <Avatar user={user.uid} />
-                                }
+                                <Avatar user={uid} />
                                 <div>{name}</div>
                             </div>
                             <div className="profile-right">
@@ -71,7 +67,6 @@ const Profile = () => {
                             </div>            
                         </div>
                         <Grid photos={posts} />
-                    </div>
                 </div>
             )       
         } else if (error) {

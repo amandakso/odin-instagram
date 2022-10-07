@@ -10,14 +10,11 @@ const GridSquare = (props) => {
     const [isClicked, setIsClicked] = useState(false);
 
     const clickImage = () => {
-        let overlay = document.querySelector(".overlay");
         if (!isClicked) {
             setPopup(<Post info={props.photo}/>);
-            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
             setIsClicked(true);
         } else {
             setPopup("");
-            overlay.style.backgroundColor = "rgba(250, 250, 250, 0)";
             setIsClicked(false);
         }
     }

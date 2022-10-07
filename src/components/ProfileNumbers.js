@@ -45,26 +45,17 @@ const ProfileNumbers = (props) => {
     const changeFollowerClick = () => {
         if (followersClicked) {
             setFollowersClicked(false);
-            let overlay = document.querySelector(".overlay");
-            overlay.style.backgroundColor = "rgba(250, 250, 250, 0)";
             
         } else {
             setFollowersClicked(true);
-            let overlay = document.querySelector(".overlay");
-            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         }
     };
 
     const changeFollowingClick = () => {
         if (followingClicked) {
-            setFollowingClicked(false);
-            let overlay = document.querySelector(".overlay");
-            overlay.style.backgroundColor = "rgba(250, 250, 250, 0)";
-            
+            setFollowingClicked(false);          
         } else {
             setFollowingClicked(true);
-            let overlay = document.querySelector(".overlay");
-            overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         }
     };
 
