@@ -23,8 +23,12 @@ const Profile = () => {
         try {
             (async () => {
                 const info = await getProfile(username);
-                setUid(info.uid);
-                setName(info.name)
+                if (!info) {
+                    return;
+                } else {
+                    setUid(info.uid);
+                    setName(info.name)
+                }
             })();
         } catch (err) {
             console.error(err);
