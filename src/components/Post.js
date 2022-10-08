@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import Comments from "./Comments";
 import Comment from "./Comment";
+import deleteIcon from "../assets/close-thick.png";
 import "../styles/Post.css";
 
 const Post = (props) => {
@@ -18,6 +19,7 @@ const Post = (props) => {
     const [isClicked, setIsClicked] = useState(false);
     const [likeStatus, setLikeStatus] = useState();
     const [likes, setLikes] = useState([]);
+    const [deleteOption, setDeleteOption] = useState(false);
 
     const displayComments = () => {
         if (!isClicked) {
@@ -27,7 +29,7 @@ const Post = (props) => {
             setViewHide("View");
             setIsClicked(false);
         }
-    }
+    };
 
     const addComment = async () => {
         try {
@@ -40,7 +42,17 @@ const Post = (props) => {
             console.error(err);
             alert(err.message);
         }
-    }
+    };
+
+    useEffect(() => {
+        if (!currentUser) {
+            return;
+        } else if (currentUser.uid === props.info.owner) {
+            setDeleteOption(true);
+        } else {
+            return;
+        }
+    },[currentUser, props.info])
 
     useEffect(() => {
         if (!currentUser) {
@@ -159,6 +171,10 @@ const Post = (props) => {
                     {
                         likes.length === 1 &&
                         <span>1 like</span>
+                    }
+                    { deleteOption
+                        ? <span className="delete"><img src={deleteIcon} alt="delete"/></span>
+                        : null
                     }
                 </div>
                 <p className="caption"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link><span> {props.info.caption}</span></p>
