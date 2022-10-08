@@ -37,19 +37,23 @@ const ProfileImageCropper = (props) => {
     }, [props, croppedImage])
 
     const storeCroppedImage = useCallback(async () => {
-        try {
-            const croppedImage = await getCroppedImg(
-                image,
-                croppedArea,
-            )
-            setCroppedImage(croppedImage);
-            await updateProfilePhoto(props.user.uid, croppedImage);
-        } catch (e) {
-            console.error(e)
+        if (image) {
+            try {
+                const croppedImage = await getCroppedImg(
+                    image,
+                    croppedArea,
+                )
+                setCroppedImage(croppedImage);
+                await updateProfilePhoto(props.user.uid, croppedImage);
+            } catch (e) {
+                console.error(e)
+            }
+        } else {
+            return;
         }
     }, [croppedArea, image, props.user])
-
-
+    
+    
     return (
         <div className="profile-container">
             <div className="container-cropper">

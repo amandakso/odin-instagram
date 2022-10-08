@@ -36,14 +36,18 @@ const ImageCropper = (props) => {
     }, [props, croppedImage])
 
     const storeCroppedImage = useCallback(async () => {
-        try {
-            const croppedImage = await getCroppedImg(
-                image,
-                croppedArea,
-            )
-            setCroppedImage(croppedImage);
-        } catch (e) {
-            console.error(e)
+        if (image) {
+            try {
+                const croppedImage = await getCroppedImg(
+                    image,
+                    croppedArea,
+                )
+                setCroppedImage(croppedImage);
+            } catch (e) {
+                console.error(e)
+            }
+        } else {
+            return;
         }
     }, [croppedArea, image])
 
