@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatus, likePost, unlikePost } from "../firebase/firebase.config";
+import { storage, getUsername, storeComment, getComments, getLikes, getLikeStatus, likePost, unlikePost, deletePost } from "../firebase/firebase.config";
 import { AuthContext } from "./AuthProvider";
 import { ref, getDownloadURL } from "firebase/storage";
 import { Link } from "react-router-dom";
@@ -43,6 +43,21 @@ const Post = (props) => {
             alert(err.message);
         }
     };
+
+    const askDeletePost = async(post, owner, attempt) => {
+        console.log(post);
+        console.log(owner);
+        console.log(attempt);
+        if (window.confirm("Delete post?") === true) {
+            try {
+                await deletePost(post, owner, attempt)
+            } catch (err) {
+                console.error(err);
+            }
+        } else {
+            return;
+        }
+    }
 
     useEffect(() => {
         if (!currentUser) {
@@ -173,7 +188,7 @@ const Post = (props) => {
                         <span>1 like</span>
                     }
                     { deleteOption
-                        ? <span className="delete"><img src={deleteIcon} alt="delete"/></span>
+                        ? <span className="delete"><img onClick={() => askDeletePost(props.info.post, props.info.owner, currentUser.uid)}src={deleteIcon} alt="delete"/></span>
                         : null
                     }
                 </div>
