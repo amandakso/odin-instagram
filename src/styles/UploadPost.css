@@ -1,12 +1,19 @@
 .container {
     height: 90vh;
     width: 100vw;
+    display: grid;
 }
 
 .caption-container {
     display: grid;
     width: 100vw;
+    max-width: 500px;
+    justify-self: center;
 }
 #photo {
+    display: grid;
+    justify-self: center;
     height: 100vw;
+    max-width: 500px;
+    max-height: 500px;
 }
