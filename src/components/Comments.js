@@ -8,7 +8,7 @@ const Comments = (props) => {
             {
             comments.map((comment, index) => {
                 return(
-                    <Comment key={index} info={comment}/>
+                    <Comment key={index} info={comment} user={props.user}/>
                 )
                 })
             }
