@@ -3,10 +3,15 @@ import Comment from "./Comment";
 
 const Comments = (props) => {
     const comments = props.comments;
+    
+    let sortedComments = comments.sort(
+        (a,b) => b.timestamp.seconds - a.timestamp.seconds,
+    );
+
     return (
         <div>
             {
-            comments.map((comment, index) => {
+            sortedComments.map((comment, index) => {
                 return(
                     <Comment key={index} info={comment} />
                 )
