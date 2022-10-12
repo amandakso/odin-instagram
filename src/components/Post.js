@@ -37,12 +37,12 @@ const Post = (props) => {
 
     function findUnits(days, hours, minutes, seconds) {
         if (days < 1 && hours < 1 && minutes < 1) {
-            if (seconds === 1) {
+            if (Math.trunc(seconds) === 1) {
                 units = "SECOND";
             } else {
                 units = "SECONDS";
             }
-            displayDate = seconds;
+            displayDate = Math.trunc(seconds);
         } else if (days < 1 && hours < 1) {
             if (minutes === 1) {
                 units = "MINUTE";
