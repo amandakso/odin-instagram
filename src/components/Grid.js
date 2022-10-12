@@ -3,9 +3,13 @@ import GridSquare from "./GridSquare";
 
 const Grid = (props) => {
     const photos = props.photos;
+    let sortedPhotos = photos.sort(
+        (a,b) => b.timestamp.seconds - a.timestamp.seconds,
+    );
+
     return (
         <div className="grid">
-            { photos.map((photo,index) => {
+            { sortedPhotos.map((photo,index) => {
                 return(
                     <GridSquare key={index} photo={photo}/>
                 )
