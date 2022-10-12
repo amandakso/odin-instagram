@@ -20,6 +20,60 @@ const Post = (props) => {
     const [likeStatus, setLikeStatus] = useState();
     const [likes, setLikes] = useState([]);
     const [deleteOption, setDeleteOption] = useState(false);
+    const currentTime = Date.now();
+    const postTime = props.info.timestamp.seconds * 1000;
+    const timeDifference = currentTime - postTime;
+    let displayDate = props.info.timestamp.toDate().toDateString().slice(4);
+    let units = null;
+
+    let seconds = Math.floor(timeDifference) / 1000;
+    let minutes = Math.floor(seconds/60);
+    let hours = Math.floor(minutes/60);
+    let days = Math.floor(hours/24);
+
+    hours = hours-(days*24);
+    minutes = minutes-(days*24*60)-(hours*60);
+    seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
+
+    function findUnits(days, hours, minutes, seconds) {
+        if (days < 1 && hours < 1 && minutes < 1) {
+            if (seconds === 1) {
+                units = "SECOND";
+            } else {
+                units = "SECONDS";
+            }
+            displayDate = seconds;
+        } else if (days < 1 && hours < 1) {
+            if (minutes === 1) {
+                units = "MINUTE";
+            } else {
+                units = "MINUTES";
+            }
+            displayDate = minutes;
+        } else if (days < 1) {
+            if (hours === 1) {
+                units = "HOUR";
+            } else {
+                units = "HOURS";
+            }
+            displayDate = hours;
+        } else if (days >= 1 && days < 8) {
+            if (days === 1) {
+                units = "DAY";
+            } else {
+                units = "DAYS";
+            }
+            displayDate = days;
+        } else {
+            units = null;
+        }
+    };
+
+    findUnits(days, hours, minutes, seconds);
+
+    if (units) {
+        displayDate = `${displayDate} ${units} AGO`;
+    }
 
     const displayComments = () => {
         if (!isClicked) {
@@ -206,7 +260,8 @@ const Post = (props) => {
                 {
                     comments.length === 1 && 
                     <p onClick={displayComments}>{viewHide} 1 comment</p>
-                }       
+                }    
+                <p className="date">{displayDate}</p>  
                 <input
                     type="text"
                     value={comment}
