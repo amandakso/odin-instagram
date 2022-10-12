@@ -195,7 +195,7 @@ const Post = (props) => {
                 <p className="caption"><Link className="text-link" to={`/users/${postUser}`}><strong>{postUser}</strong></Link><span> {props.info.caption}</span></p>
                 <div className="comments">
                     { isClicked
-                        ? <Comments user={currentUser} comments={comments}/>
+                        ? <Comments comments={comments}/>
                         :null
                     }             
                 </div>

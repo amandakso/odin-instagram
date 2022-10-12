@@ -1,28 +1,33 @@
-import React, {useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { deleteComment, getUsername } from "../firebase/firebase.config";
+import { AuthContext } from "./AuthProvider";
 import { Link } from "react-router-dom";
 import deleteIcon from "../assets/close-thick.png";
 
 export default function Comment(props) {
     const [username, setUsername] = useState("");
     const [deleteOption, setDeleteOption] = useState("false");
-    console.log(props.info.ref);
+    const { currentUser } = useContext(AuthContext);
 
-    const askDeleteComment = async (post, owner, commenter, attempt, reference) => {
+    const askDeleteComment = async (post, owner, commenter, user, reference) => {
         try {
-            await deleteComment(post, owner, commenter, attempt, reference);
+            await deleteComment(post, owner, commenter, user.uid, reference);
         } catch (err) {
             console.error(err);
         }
     };
 
     useEffect(() => {
-        if (props.user === props.info.commenter) {
-            setDeleteOption(true);
+        if (!currentUser) {
+            return
         } else {
-            setDeleteOption(false);
+            if (currentUser.uid === props.info.commenter) {
+                setDeleteOption(true);
+            } else {
+                setDeleteOption(false);
+            }
         }
-    }, [props.user, props.info])
+    }, [currentUser, props.info])
     useEffect(() => {
         (async () => {
             let name = await getUsername(props.info.commenter);
@@ -37,7 +42,7 @@ export default function Comment(props) {
                 <span> {props.info.comment}</span>
                 {
                     deleteOption
-                    ? <span className="delete"><img onClick={() => askDeleteComment(props.info.post, props.info.owner, props.info.commenter, props.user, props.info.ref)}src={deleteIcon} alt="delete"/></span>
+                    ? <span className="delete"><img onClick={() => askDeleteComment(props.info.post, props.info.owner, props.info.commenter, currentUser, props.info.ref)}src={deleteIcon} alt="delete"/></span>
                     : null
                 }
             </p>     
