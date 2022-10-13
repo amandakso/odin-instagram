@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
 import Navbar from './Navbar';
+import Error from "./Error";
 import ImageCropper from './ImageCropper';
 import UploadPost from './UploadPost';
 
@@ -29,7 +30,7 @@ const AddPhoto = () => {
                     }
                 </div>)
         } else if (error) {
-            setPage(<div>Error...</div>)
+            setPage(<div><Error /></div>)
         } else {
             navigate("/logout");
             return;

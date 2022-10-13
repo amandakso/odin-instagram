@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from './Navbar';
+import Error from "./Error";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
@@ -71,7 +72,7 @@ const Profile = () => {
                 </div>
             )       
         } else if (error) {
-            setPage(<div>Error...</div>)
+            setPage(<div><Error /></div>)
         } else {
             navigate("/logout");
             return;

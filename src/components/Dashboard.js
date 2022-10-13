@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
+import Error from "./Error";
 import Feed from "./Feed";
 
 function Dashboard() {
@@ -23,9 +24,9 @@ function Dashboard() {
                         <Feed />
                     </div>
                 </div>
-            )
+            );
         } else if (error) {
-            setPage(<div>Error...</div>)
+            setPage(<div><Error /></div>);
         } else {
             navigate("/logout");
             return;
