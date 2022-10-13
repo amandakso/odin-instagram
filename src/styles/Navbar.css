@@ -36,3 +36,14 @@ nav {
   #logo {
    width: 55px;
   }
+
+  @media only screen and (max-width: 600px) {
+    #logoText {
+      display: none;
+    }
+
+    .rightLinks {
+      overflow: auto;
+      white-space: nowrap;
+    }
+  }

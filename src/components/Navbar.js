@@ -41,9 +41,9 @@ const Navbar = () => {
     return (
         <nav className="nav">
             <ul className="nav-links left">
-                <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span>Pandastagram</span></Link></li>      
+                <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span id="logoText">Pandastagram</span></Link></li>      
             </ul>
-            <ul className="nav-links">
+            <ul className="nav-links rightLinks">
                 <li><img onClick={changeSearchClicked} className="nav-link" src={search} alt="search"/></li>
                 <li><Link className="nav-link" to='/dashboard'><img src={home} alt="home"/></Link></li>
                 <li><Link className="nav-link" to='/addPhoto'><img src={plus} alt="add"/></Link></li>
