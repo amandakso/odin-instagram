@@ -75,7 +75,7 @@ const ImageCropper = (props) => {
                                 max="3" 
                                 step="0.1"
                                 value={zoom}
-                                onChange={(e, zoom) => setZoom(zoom)}
+                                onChange={(e) => setZoom(e.target.value)}
                             />
                         </div>
                     </div>
