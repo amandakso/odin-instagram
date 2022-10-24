@@ -16,7 +16,7 @@ const ProfilePhoto = (props) => {
                 if (!props.user.photoURL) {
                     return;
                 } else {
-                    await getDownloadURL(ref(storage, props.user.photoURL))
+                    await getDownloadURL(ref(storage, `profilephotos/${props.user.photoURL}`))
                     .then((url) => {
                         setPhoto(url);
                     })

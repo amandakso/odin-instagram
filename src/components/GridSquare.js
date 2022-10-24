@@ -22,7 +22,7 @@ const GridSquare = (props) => {
     useEffect(() => {
         (async () => {
                 try {
-                    await getDownloadURL(ref(storage, props.photo.img))
+                    await getDownloadURL(ref(storage, `posts/${props.photo.img}`))
                     .then((url) => {
                         setImage(url);
                     })

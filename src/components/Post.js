@@ -155,7 +155,7 @@ const Post = (props) => {
     useEffect(() => {
         (async () => {
                 try {
-                    await getDownloadURL(ref(storage, props.info.img))
+                    await getDownloadURL(ref(storage, `posts/${props.info.img}`))
                     .then((url) => {
                         setImage(url);
                     })

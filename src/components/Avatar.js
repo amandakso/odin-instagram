@@ -29,7 +29,7 @@ const Avatar = (props) => {
                 if (!photo) {
                     setAvatar(<DefaultAvatar />);
                 } else {
-                    await getDownloadURL(ref(storage, photo))
+                    await getDownloadURL(ref(storage, `profilephotos/${photo}`))
                     .then((url) => {
                         setAvatar(<img style={{borderRadius: "50%", width: "80px"}} src={url} alt="profile" />);
                     })
