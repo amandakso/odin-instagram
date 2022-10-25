@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, updateName, updateUsername } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
+import Error from "./Error";
 import ProfilePhoto from "./ProfilePhoto";
 import "../styles/Settings.css";
 
@@ -13,10 +14,18 @@ const Settings = () => {
     const [name, setName] = useState("");
     
     const navigate = useNavigate();
+    console.log(user.uid);
 
     useEffect(() => {
         if(loading) {
             setPage(<div>Loading...</div>);
+        } else if (user.uid === 'qxsdhvfidBT6Tm8pdhGfNfqa63J2') {
+            setPage(
+                <div>
+                    <Navbar />
+                    <Error />
+                </div>
+            )
         } else if (user) {
             setPage(
                 <div>

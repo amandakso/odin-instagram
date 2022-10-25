@@ -20,6 +20,8 @@ const Navbar = () => {
     const [searchClicked, setSearchClicked] = useState(false);
     const navigate = useNavigate();
 
+    console.log(currentUser);
+
     const changeSearchClicked = () => {
         if (searchClicked) {
             setSearchClicked(false);            
@@ -51,7 +53,10 @@ const Navbar = () => {
                     ? <li><Link className="nav-link" to={`/users/${currentUser.displayName}`}><img src={account} alt="account"/></Link></li>
                     : <li><Link className="nav-link" to="/"><img src={account} alt="account"/></Link></li>
                 }
-                <li><Link className="nav-link" to="/settings"><img src={cog} alt="settings"/></Link></li>
+                { currentUser && currentUser.uid !== 'qxsdhvfidBT6Tm8pdhGfNfqa63J2'
+                    ? <li><Link className="nav-link" to="/settings"><img src={cog} alt="settings"/></Link></li>
+                    : null
+                }
                 <li><img className="nav-link" onClick={logout} src={logoutAccount} alt="logout"/></li>
             </ul>
             { searchClicked
