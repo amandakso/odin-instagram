@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "./AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../firebase/firebase.config";
+import { auth, logInWithEmailAndPassword, loginGuest } from "../firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../styles/Login.css";
 
@@ -52,6 +52,12 @@ function Login() {
                 <div>
                     Don't have an account? <Link to="/register">Register</Link> now.
                 </div>
+                <button 
+                    className="guest_btn"
+                    onClick= {() => loginGuest()}
+                >
+                    Try Guest Account
+                </button>
             </div>
         </div>
     )

@@ -20,8 +20,6 @@ const Navbar = () => {
     const [searchClicked, setSearchClicked] = useState(false);
     const navigate = useNavigate();
 
-    console.log(currentUser);
-
     const changeSearchClicked = () => {
         if (searchClicked) {
             setSearchClicked(false);            
