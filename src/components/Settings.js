@@ -14,19 +14,19 @@ const Settings = () => {
     const [name, setName] = useState("");
     
     const navigate = useNavigate();
-    console.log(user.uid);
 
     useEffect(() => {
         if(loading) {
             setPage(<div>Loading...</div>);
-        } else if (user.uid === 'qxsdhvfidBT6Tm8pdhGfNfqa63J2') {
-            setPage(
-                <div>
-                    <Navbar />
-                    <Error />
-                </div>
-            )
         } else if (user) {
+            if (user.uid === 'qxsdhvfidBT6Tm8pdhGfNfqa63J2') {
+                setPage(
+                    <div>
+                        <Navbar />
+                        <Error />
+                    </div>
+                )
+            } else {
             setPage(
                 <div>
                     <Navbar />
@@ -56,6 +56,7 @@ const Settings = () => {
                     </div>
                 </div>
             )
+            }
         } else if (error) {
             setPage(<div>Error...</div>)
         } else {
