@@ -6,6 +6,7 @@ import SearchResult from "./SearchResult";
 const Users = (props) => {
     const [page, setPage] = useState(<div></div>)
     const accounts = props.accounts;
+
     useEffect(() => {
         if (props.userType === "follower") {
             setPage(
@@ -16,7 +17,7 @@ const Users = (props) => {
                         )
                     })}
                 </div>
-            )
+            );
         } else if (props.userType ==="following") {
             setPage(
                 <div>
@@ -26,7 +27,7 @@ const Users = (props) => {
                         )
                     })}
                 </div>
-            )
+            );
         } else if (props.userType ==="search") {
             setPage(
                 <div>
@@ -36,9 +37,9 @@ const Users = (props) => {
                         )
                     })}
                 </div>
-            )
+            );
         } else {
-            setPage(<div>Error...</div>)
+            setPage(<div>Error...</div>);
         }
     },[props, accounts])
     return (

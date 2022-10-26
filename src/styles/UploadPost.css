@@ -10,6 +10,7 @@
     max-width: 500px;
     justify-self: center;
 }
+
 #photo {
     display: grid;
     justify-self: center;

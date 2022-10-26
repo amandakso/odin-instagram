@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "./AuthProvider";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../firebase/firebase.config";
 import logo from "../assets/panda-insta.png";
@@ -16,7 +14,6 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
     const { currentUser } = useContext(AuthContext);
-    const [user, loading, error] = useAuthState(auth);
     const [searchClicked, setSearchClicked] = useState(false);
     const navigate = useNavigate();
 
@@ -29,12 +26,11 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        if(loading) return;
         if(!currentUser) {
             navigate("/");
             return;
         }
-    }, [currentUser, navigate, user, loading]);
+    }, [currentUser, navigate]);
 
 
 

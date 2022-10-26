@@ -5,7 +5,6 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import Comments from "./Comments";
-import Comment from "./Comment";
 import deleteIcon from "../assets/close-thick.png";
 import "../styles/Post.css";
 

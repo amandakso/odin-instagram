@@ -19,10 +19,12 @@
     justify-content: center;
     padding: 20px 0;
 }
+
 .user-left {
     display: grid;
     justify-items: center;
 }
+
 .user-right {
     display: grid;
     justify-items: start;

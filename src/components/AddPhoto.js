@@ -10,7 +10,7 @@ import UploadPost from './UploadPost';
 const AddPhoto = () => {
     const [photo, setPhoto] = useState(null);
     const [user, loading, error] = useAuthState(auth);
-    const [page, setPage] = useState(<div></div>) 
+    const [page, setPage] = useState(<div></div>);
     const navigate = useNavigate();
 
     const updatePhoto = (newPhoto) => {
@@ -19,7 +19,7 @@ const AddPhoto = () => {
 
     useEffect(() => {
         if(loading) {
-            setPage(<div>Loading...</div>)
+            setPage(<div>Loading...</div>);
         } else if (user) {
             setPage(        
                 <div>
@@ -28,9 +28,9 @@ const AddPhoto = () => {
                         ? <UploadPost photo={photo}/>
                         : <ImageCropper updatePhoto={updatePhoto} />
                     }
-                </div>)
+                </div>);
         } else if (error) {
-            setPage(<div><Error /></div>)
+            setPage(<div><Error /></div>);
         } else {
             navigate("/logout");
             return;

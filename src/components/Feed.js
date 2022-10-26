@@ -41,9 +41,9 @@ const Feed = () => {
                         )
                     })}
                 </div>
-            )
+            );
         } else if (error) {
-            setPage(<div>Error...</div>)
+            setPage(<div>Error...</div>);
         } else {
             setPage(<div></div>);
             navigate("/logout");

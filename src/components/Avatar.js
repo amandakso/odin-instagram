@@ -17,7 +17,6 @@ const Avatar = (props) => {
                     setPhoto(fileName);
                 } catch (err) {
                     console.error(err);
-                    alert(err.message);
                 }
             })();  
         }
@@ -36,7 +35,6 @@ const Avatar = (props) => {
                 }
             } catch (err) {
                 console.error(err);
-                alert(err.message);
             }
         })();
     },[photo])

@@ -28,7 +28,6 @@ const GridSquare = (props) => {
                     })
                 } catch (err) {
                     console.error(err);
-                    alert(err.message);
                 }
             })();
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from "./AuthProvider";
 import { savePost } from "../firebase/firebase.config";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +18,9 @@ const UploadPost = (props) => {
            }
         } catch (err) {
             console.log(err);
-            alert(err.message);
         }
     }
+
     return (
         <div className="container">
             <img id="photo" src={photo} alt=""></img>

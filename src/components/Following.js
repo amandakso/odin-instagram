@@ -15,7 +15,6 @@ const Following = (props) => {
                 setFullName(profileData.name);
             } catch (err) {
                 console.error(err);
-                alert(err.message);
             }
         })();
     },[props.account]);

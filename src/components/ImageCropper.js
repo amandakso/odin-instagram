@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import ReactDOM from 'react-dom';
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './GetCroppedImg';
 import "../styles/ImageCropper.css";
@@ -14,7 +13,6 @@ const ImageCropper = (props) => {
     const [zoom, setZoom] = useState(1);
     const [croppedImage, setCroppedImage] = useState(null);
  
-
     const onCropComplete = (croppedArea, croppedAreaPixels) => {
         setCroppedArea(croppedAreaPixels);
     };
@@ -28,6 +26,7 @@ const ImageCropper = (props) => {
             });
         }
     };
+
     useEffect (() => {
         if (croppedImage) {
             const updatePhoto = (newPhoto) => props.updatePhoto(newPhoto);
@@ -44,13 +43,12 @@ const ImageCropper = (props) => {
                 )
                 setCroppedImage(croppedImage);
             } catch (e) {
-                console.error(e)
+                console.error(e);
             }
         } else {
             return;
         }
     }, [croppedArea, image])
-
 
     return (
         <div className="container">

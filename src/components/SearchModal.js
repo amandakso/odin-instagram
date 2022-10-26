@@ -15,7 +15,6 @@ const SearchModal = (props) => {
             try {
                 let userData = await getAllUsers();
                 setAllUsers(userData);
-                console.log(userData);
             } catch (err) {
                 console.error(err);
                 alert(err.message);
@@ -51,9 +50,7 @@ const SearchModal = (props) => {
             />
             {searchResults}
         </div>
-
     )
-
 }
 
 export default SearchModal;

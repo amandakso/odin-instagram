@@ -28,6 +28,7 @@ export default function Comment(props) {
             }
         }
     }, [currentUser, props.info])
+    
     useEffect(() => {
         (async () => {
             let name = await getUsername(props.info.commenter);

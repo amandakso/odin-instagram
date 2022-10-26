@@ -37,7 +37,6 @@ const Profile = () => {
         
     }, [username, user]);
 
-
     useEffect(() => {
         try {
             (async () => {
@@ -72,7 +71,7 @@ const Profile = () => {
                 </div>
             )       
         } else if (error) {
-            setPage(<div><Error /></div>)
+            setPage(<div><Error /></div>);
         } else {
             navigate("/logout");
             return;

@@ -1,4 +1,3 @@
-
 .container {
     height: 90vh;
     width: 100vw;
@@ -9,7 +8,6 @@
     width: 100vw;
     position: relative
 }
-
 
 .container-cropper {
     display: grid;

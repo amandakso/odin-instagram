@@ -27,6 +27,7 @@ const ProfilePhoto = (props) => {
             }
         })();
     },[props.user.photoURL])
+    
     return (
         <div>
             {photo

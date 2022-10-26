@@ -1,6 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { AuthContext } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
@@ -8,7 +7,6 @@ import Error from "./Error";
 import Feed from "./Feed";
 
 function Dashboard() {
-    const { currentUser } = useContext(AuthContext);
     const [user, loading, error] = useAuthState(auth);
     const [page, setPage] = useState(<div></div>) 
     const navigate = useNavigate();

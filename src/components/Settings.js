@@ -5,7 +5,6 @@ import { auth, updateName, updateUsername } from "../firebase/firebase.config";
 import Navbar from "./Navbar";
 import Error from "./Error";
 import ProfilePhoto from "./ProfilePhoto";
-import "../styles/Settings.css";
 
 const Settings = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -25,7 +24,7 @@ const Settings = () => {
                         <Navbar />
                         <Error />
                     </div>
-                )
+                );
             } else {
             setPage(
                 <div>
@@ -55,10 +54,10 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-            )
+            );
             }
         } else if (error) {
-            setPage(<div>Error...</div>)
+            setPage(<Error />);
         } else {
             navigate("/logout");
             return;

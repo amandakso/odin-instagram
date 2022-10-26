@@ -13,7 +13,6 @@ const ProfileImageCropper = (props) => {
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [croppedImage, setCroppedImage] = useState(null);
- 
 
     const onCropComplete = (croppedArea, croppedAreaPixels) => {
         setCroppedArea(croppedAreaPixels);
@@ -28,6 +27,7 @@ const ProfileImageCropper = (props) => {
             });
         }
     };
+
     useEffect (() => {
         if (croppedImage) {
             const updatePhoto = (newPhoto) => props.updatePhoto(newPhoto);
@@ -52,7 +52,6 @@ const ProfileImageCropper = (props) => {
             return;
         }
     }, [croppedArea, image, props.user])
-    
     
     return (
         <div className="profile-container">

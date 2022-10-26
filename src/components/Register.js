@@ -1,10 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import {
-    auth,
-    registerWithEmailAndPassword,
-} from "../firebase/firebase.config";
+import {  auth, registerWithEmailAndPassword, } from "../firebase/firebase.config";
 import "../styles/Register.css";
 
 function Register() {
@@ -13,7 +10,7 @@ function Register() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [name, setName] = useState("");
-    const[user, loading, error] = useAuthState(auth);
+    const[user] = useAuthState(auth);
     const navigate = useNavigate();
     
     const isPasswordConfirmed = (password,confimPassword) => {
@@ -30,10 +27,10 @@ function Register() {
             registerWithEmailAndPassword(username, name, email, password);
         }
     };
+
     useEffect(() => {
-        if (loading) return;
         if (user) navigate("/dashboard");
-    }, [user, loading, navigate])
+    }, [user, navigate])
 
     return (
         <div className="register">

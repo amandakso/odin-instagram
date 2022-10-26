@@ -1,19 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { AuthContext } from "./AuthProvider";
-import { useNavigate, Link } from "react-router-dom";
-import { auth, sendPasswordReset } from "../firebase/firebase.config";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { sendPasswordReset } from "../firebase/firebase.config";
 import "../styles/Reset.css";
 
 function Reset() {
-    const { currentUser } = useContext(AuthContext);
     const [email, setEmail] = useState("");
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (loading) return;
-    }, [loading]);
 
     return (
         <div className="reset">
