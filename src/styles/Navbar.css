@@ -19,7 +19,7 @@ nav {
     color: black;
   }
 
-  .pandastagram {
+  .pandagram {
     display: grid;
     grid-auto-flow: column;
     align-items: center;

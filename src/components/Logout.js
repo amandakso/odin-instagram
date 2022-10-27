@@ -13,7 +13,7 @@ const Logout = () => {
 
     return (
         <div>
-            <img src={logo} style={{width: "250px"}}alt="Pandastagram logo"/>
+            <img src={logo} style={{width: "250px"}}alt="Pandagram logo"/>
             <h2>Logged Out! Redirecting now... </h2>
         </div>
     )

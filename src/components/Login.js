@@ -20,7 +20,7 @@ function Login() {
     return (
         <div className="login">
             <div className="login_container">
-                <p className="handlee">Pandastagram</p>
+                <p className="handlee">Pandagram</p>
                 <input 
                     type="text"
                     className="login_textBox"

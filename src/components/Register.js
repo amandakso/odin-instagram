@@ -35,7 +35,7 @@ function Register() {
     return (
         <div className="register">
             <div className="register_container">
-                <p className="handlee">Pandastagram</p>
+                <p className="handlee">Pandagram</p>
                 <input
                     type="text"
                     className="register_textBox"

@@ -37,7 +37,7 @@ const Navbar = () => {
     return (
         <nav className="nav">
             <ul className="nav-links left">
-                <li><Link className="nav-link pandastagram" to="/"><img id="logo"src={logo} alt="Pandastagram Logo"/><span id="logoText">Pandastagram</span></Link></li>      
+                <li><Link className="nav-link pandagram" to="/"><img id="logo"src={logo} alt="Pandagram Logo"/><span id="logoText">Pandagram</span></Link></li>      
             </ul>
             <ul className="nav-links rightLinks">
                 <li><img onClick={changeSearchClicked} className="nav-link" src={search} alt="search"/></li>
