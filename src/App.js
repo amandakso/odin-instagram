@@ -26,7 +26,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route
               path="*"
-              element={<Navigate to="/login" />} 
+              element={<Navigate to="/" />} 
             />
           </Routes>
         </BrowserRouter>
