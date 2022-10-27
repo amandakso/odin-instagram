@@ -89,7 +89,6 @@ const Post = (props) => {
             await storeComment(props.info.owner, props.info.post, currentUser.uid, comment)
             setComment("");
             let comments = await getComments(props.info.post, props.info.owner);
-            console.log(comments);
             setComments(comments);
         } catch (err) {
             console.error(err);
@@ -98,9 +97,6 @@ const Post = (props) => {
     };
 
     const askDeletePost = async(post, owner, attempt) => {
-        console.log(post);
-        console.log(owner);
-        console.log(attempt);
         if (window.confirm("Delete post?") === true) {
             try {
                 await deletePost(post, owner, attempt)
